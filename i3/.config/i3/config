@@ -216,4 +216,57 @@ for_window [title="Library"] floating enable
 # provides guidance on how to find relevant criteria that can be used
 # to make windows float.
 
+# Now to define the programs that I want to start every time I launch
+# i3wm. These are the programs such as a browser, email client and a
+# terminal which I assume I am going to need every time I use my
+# computer.
 #
+# choose random wallpaper from my 'daytime' wallpapers folder
+exec --no-startup-id i3-msg 'exec feh --randomize --bg-fill /home/rjf/Pictures/Wallpapers/*'
+#
+# This loads a wallpaper when first logged in. This stops the screen being a big slab of black. There is
+# a cronjob which shuffles the wallpaper regularly, with the 'theme' changing during the day.
+
+# start Dropbox
+exec --no-startup-id i3-msg 'exec dropbox start'
+# start redshift to cut blue light
+exec --no-startup-id i3-msg 'exec redshift-gtk'
+# XScreensaver launch
+exec --no-startup-id i3-msg 'exec xscreensaver'
+# Network Manager Applet
+exec --no-startup-id i3-msg 'exec nm-applet'
+# set the keyboard layout to use Dvorak layout with the UK punctuation config and Caps Lock/Ctrl being swapped
+exec --no-startup-id i3-msg 'exec setxkbmap -layout gb -variant dvorakukp -option "ctrl:swapcaps"'
+# activate task list
+exec --no-startup-id i3-msg 'task list'
+# activate the Compton compositor to use transparency
+exec --no-startup-id i3-msg 'exec compton -f -b'
+# volume icon activation
+exec --no-startup-id i3-msg 'exec volumeicon'
+# xpad - post-it programs
+exec --no-startup-id i3-msg 'exec xpad'
+# launch nemo file manager in background to speed starting later
+exec --no-startup-id i3-msg 'exec nemo -n'
+# start megasync
+exec --no-startup-id i3-msg 'exec megasync'
+# start a clipboard manager
+exec --no-startup-id i3-msg 'exec parcellite'
+
+#
+# these are the programs that I will start and run on specific desktops
+#
+# Evolution, the email client
+exec --no-startup-id i3-msg 'workspace 1: Evolution; exec evolution'
+# Firefox Nightly, the browser
+exec --no-startup-id i3-msg 'workspace 2: Firefox; exec firefox'
+# Terminal emulator
+exec --no-startup-id i3-msg 'workspace 3: Terminal; exec i3-sensible-terminal'
+# Emacs - An operating system lacking a good editor !
+exec --no-startup-id i3-msg 'workspace 4: Emacs; exec emacsclient -a "" -c "$@"'
+# Spotify
+exec --no-startup-id i3-msg 'workspace 10: Spotify; exec spotify'
+
+#
+# info on using multiple screens with i3 here:
+#
+# https://fedoramagazine.org/using-i3-with-multiple-monitors
