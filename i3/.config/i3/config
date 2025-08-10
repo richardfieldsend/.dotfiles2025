@@ -247,7 +247,8 @@ exec --no-startup-id i3-msg 'exec volumeicon'
 # xpad - post-it programs
 #exec --no-startup-id i3-msg 'exec xpad -h'
 # launch nemo file manager in background to speed starting later
-exec --no-startup-id i3-msg 'exec nemo -n'
+#exec --no-startup-id i3-msg 'exec nemo -n'
+exec --no-startup-id i3-msg 'exec thunar-daemon'
 # start megasync
 exec --no-startup-id i3-msg 'exec megasync'
 # start a clipboard manager
