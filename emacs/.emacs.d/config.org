@@ -1,0 +1,230 @@
+* Emacs Configuration 2025 - Emacs v.31.
+
+In August 2025 I updated my Emacs binary, pulling the latest source
+code from the Git repository andy building it using the standard
+instructions which are included in the Readme file.
+
+Having created the new binary, and run 'make install' you can check
+the version of the running Emacs by running 'M-x version'. The output
+will provide the current Emacs version (31.0.50) along with some
+information about the interface support.
+
+In most cases the Emacs initialisation files (init.el and config.org)
+can be used without any modification, but it is also a good
+opportunity to revisit the existing files, reconsider their structure,
+and whether there are any changes or improvements that can be made.
+
+Here we are again, putting together a configuration file for this new
+iteration.
+
+** What The Configuration File Should Do.
+
+Because Emacs is a tool which can do so many different jobs, it is
+obvious that no two users are likely to have the same use case which
+they need to address in their Emacs configuration. Someone who codes
+for a living will be most interested in functions which enable dealing
+with any code base that they interact with, and this may include
+dealing with different languages, providing linting and code checking
+in those languages and compilation and debugging support. An author of
+prose is more likely to look for a setup which provides a way of
+bashing out their text as quickly as possible, possibly supports
+grammar and spelling checking and then allows text markup to turn the
+document into a suitable format for sharing with others.
+
+While the following outlines all the functions that will need to be
+enabled, there is a section that introduces the whole thing, setting
+up the connection to the package management system and enabling the
+all important version control using Magit.
+
+Some tools and settings are undoubtedly of interest across different
+use cases. The ability to create automatically expanding text to speed
+the process of writing, version control and electric[fn:1] behaviour
+is universally useful and should be enabled for all use cases. The
+sort of functionality that fits in this space are things like
+automatic bracket and parenthesis pairing, colouring of bracket pairs
+to help track and check that brackets are balanced and line wrapping
+(in almost all cases).
+
+The next breakdown into sections is the entirely aesthetic. They don't
+really change the behaviour of the text being entered, but they do
+affect the appearance. This would include colour themes, font choices
+and the like.
+
+Addressing the first of the major uses for Emacs, I'll start with text
+entry. These are the functions that support writing documents of
+various times. Examples of these functions will include Groff/Troff
+support, HTML/CSS support (using Emmet) and LaTeX using AucTeX mode,
+BibTeX and related products and then potentially various forms of
+Markdown (which includes Org mode used to write this configuration
+file).
+
+The second major group will be the programming support. Ideally this
+would provide programming support for all the languages that I'm
+interested in writing and learning. This list would include Lisp (Slime),
+Clojure, Python, C/C++ and probably Rust. Relevant extra functions
+will include debuggers (gdb being the obvious example), code linters
+etc.
+
+* Configuration Tree.
+
+The following should act as a framework for adding the various
+functions as outlined above.
+
+** Package Management Configuration.
+
+Old enough, and ugly enough, I remember when the process of adding
+packages into Emacs meant finding a relevant set of instructions for
+each package, usually involving unpacking the code into a folder and
+then compiling it and adding the configuration to your init file. More
+recently, clearly taking inspiration from the package management
+paradigm used in modern Linux distributions, Emacs now has the Melpa
+package storage and the packages can be installed using the
+'use-package' command. To enable this approach you start by
+configuring the Melpa server as a repository. This is the equivalent
+of having the distribution repository configured in sources.d or
+similar, depending on your distribution.
+
+The code below defines the repository location and type (melpa and
+non-gnu).
+
+#+begin_src emacs-lisp
+  ;; Configure the Melpa package repositories that will be used in
+  ;; the rest of the configuration file.
+  (eval-and-compile)
+  (require 'package)
+  (add-to-list 'package-archives
+  	     '("melpa" . "https://melpa.org/packages/"))
+  (add-to-list 'package-archives
+  	     '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
+  (package-initialize)
+  (package-refresh-contents)
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+  (require 'use-package)
+  (setq use-package-always-ensure t)
+#+end_src
+
+** Package Installation Development Cycle.
+
+Some notes on the development process for this configuration file.
+
+I have previously managed to generate a configuration file which does
+pretty much everything that I want it to do, but I'm keen to improve
+the structure of the file, especially with a view to making it easier
+to maintain and build on in the future. A part of this is the defining
+of the structure for the components that the file will
+include. Testing of the file as it is developed is enabled by using
+the GNU Stow package. Stow is described as a link farm management
+package which allows you to create and modify the links to packages or
+files in order to allow rapid switching from one version to another.
+
+I tend to use GNU Stow to manage the text based configuration files
+that I use throughout my Linux setup. I have a folder:
+
+.dotfiles2025
+
+in my home folder. Subfolders of this folder will hold the relevant
+configuration files. To help manage the setup, this second level
+folder is named to help identify the software being managed. In the
+case of Emacs, the obvious name would be 'emacs' but if there are
+different files required then the name could include a descriptor
+(dev, final etc) or the version of the program being addressed.
+
+The subfolders under this descriptor are then the folders structure
+that is created relative to the target location for the configuration
+file. In Emacs the configuration file is normally located in:
+
+~/.emacs.d/
+
+so the full path for the stowed configuration file is:
+
+~/.dotfiles2025/emacs/.emacs.d/(config.org and init.el)
+
+The process of 'installing' the configuration file using GNU Stow
+should be relatively straightforward. Information can be found using
+'man stow', but the following shows how to change the configuration
+files from one version to another.
+
+At this point, where I am using the previous configuration file
+located in:
+
+~/.dotfiles25/emacs2024/.emacs.d/config.org
+
+the softlink in the folder:
+
+~/.emacs.d/
+
+points at the files (config.org and init.el) in the above folder.
+
+To replace the files with this local 'in development' version run:
+
+rm -rfv ~/.emacs.d
+
+then, from the appropriate stow folder run:
+
+stow emacs
+
+This will create the symlink enabling the appropriate files.
+
+The deletion step seems to be necessary as Stow won't overwrite an
+existing link as a precautionary measure.
+
+At this point in the development, I am using the previous version of
+the configuration file, but will switch into the new version for
+testing purposes as the file is expanded. Then, at some point, when
+most of the useful functionality is in place I will switch to this
+file full time.
+
+** Magit Version Control.
+
+** Aesthetics Settings.
+
+*** Minimise the Screen Furniture in the Emacs Window.
+
+*** Select A Dark Colour Theme.
+
+*** Set A Nice Font.
+
+** Behaviours That Are Useful In All The Modes.
+
+*** Parenthesis Pairing - add the closing bracket automatically.
+
+*** Spell Checking - Check Spelling Against UK British Dictionary.
+
+*** Rainbow Colouring Of Brackets - Useful to check bracket pairing
+
+** Writing Prose And Documents.
+
+*** Groff/Troff Editing
+
+*** HTML/CSS Editing Using Emmet
+
+*** LaTeX Using AucTeX/BibTeX/RefTeX.
+
+*** Manage the Bibliographic Databases Using eBib.
+
+*** Markdown and Org Mode Document Preparation.
+
+** Programming Modes and Support.
+
+*** Makefile.
+
+*** Lisp/Clojure.
+
+*** Python.
+
+*** C/C++.
+
+*** Rust.
+
+*** Debugging.
+
+* Footnotes
+
+[fn:1] In Emacs, the term 'electric' behaviour refers to extra
+behaviour triggered when various keys are pressed. The term is most
+often used to describe the enter or return key moving the cursor to
+the next line (the usual behaviour) and also carry out the action that
+adding the tab key would provide. In writing code the electric
+behaviour will indent the next line, especially useful when writing an
+indent sensitive language such as Python.
