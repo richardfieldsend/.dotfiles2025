@@ -271,12 +271,55 @@ usage through the keyboard.
   (tool-bar-mode 0)			; no tool bar
   (blink-cursor-mode 0)			; steady cursor rather than blinking
   (scroll-bar-mode 0)			; no scroll bar... save the real estate
-  (display-batter-mode 1)			; battery info in the mode line.
+  (display-battery-mode 1)			; battery info in the mode line.
 #+end_src
 
 The line about displaying the time in the modeline has been removed
 because I'll be using the Doom modeline which doesn't seem to support
 time usage.
+
+*** Don't Show the Splash Screen.
+
+I usually start Emacs in the client mode so that it connects to a
+daemon module (which is launched automatically if it isn't already
+running). Because of this, I don't normally have a problem with the
+splash screen being displayed. However, I don't want it displayed,
+even if I run Emacs as a standalone instantiation. The following
+switches off the splash screen.
+
+#+begin_src emacs-lisp
+  ;; Splash screen be gone!
+  (setq inhibit-startup-message t)
+#+end_src
+
+*** Do Show a Pithy Quote Instead.
+
+As the splash screen has been deactivated, the scratch buffer is
+displayed by default. On its own it will contain some pretty dull text
+about using the buffer. But who wants to settle for that.
+
+The setting below is derived from a version I came up with when
+working at the University. At that stage I had the same configuration
+file in use at home and at work, so liked the idea of a different text
+phrase being displayed in the different locations. This was achieved
+by filtering on the system name and using this to select the
+text. I'll leave it in place in case I start using the configuration
+in multiple locations.
+
+#+begin_src emacs-lisp
+        ;; Display pithy text on the basis of system name
+        (if (string=(system-name) "ziggyi5")
+            (setq initial-scratch-message
+    		"\n\n\n\n\t\t\tOnce upon a midnight dreary, while I pondered, weak and weary,
+  \t\t\tOver many a quaint and curious volume of forgotten lore,
+  \t\t\tWhile I nodded, nearly napping, suddenly there came a tapping,
+  \t\t\tAs of some one gently rapping, rapping at my chamber door. “
+  \t\t\t“'Tis some visitor,” I muttered, “tapping at my chamber door—
+  \t\t\tOnly this, and nothing more.”"))
+  (if (string=(system-name) "uk-rfieldse-l")
+      (setq initial-scratch-message
+  	    "Everything's science-fiction until someone makes it science fact.\n\nMarie Lu"))
+#+end_src
 
 *** Select A Dark Colour Theme.
 
