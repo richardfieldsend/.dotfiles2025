@@ -252,11 +252,31 @@ do all work as expected!
     (helm-autoresize-mode))
 #+end_src
 
-Practice makes perfect when it comes to using Helm.
+Practice makes perfect when it comes to using Helm. Use it and gain familiarity!
 
 ** Aesthetics Settings.
 
+The next bunch of settings are not really necessary, but they do make
+Emacs look prettier and easier on the eye.
+
 *** Minimise the Screen Furniture in the Emacs Window.
+
+Out of the box, Emacs has a menu bar, toolbar (complete with icons)
+and the like. These are unnecessary because we'll be driving all the
+usage through the keyboard.
+
+#+begin_src emacs-lisp
+  ;; Minimise the screen furniture.
+  (menu-bar-mode 0)			; no menu bar
+  (tool-bar-mode 0)			; no tool bar
+  (blink-cursor-mode 0)			; steady cursor rather than blinking
+  (scroll-bar-mode 0)			; no scroll bar... save the real estate
+  (display-batter-mode 1)			; battery info in the mode line.
+#+end_src
+
+The line about displaying the time in the modeline has been removed
+because I'll be using the Doom modeline which doesn't seem to support
+time usage.
 
 *** Select A Dark Colour Theme.
 
