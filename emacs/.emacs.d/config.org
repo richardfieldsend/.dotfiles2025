@@ -177,6 +177,83 @@ file full time.
 
 ** Magit Version Control.
 
+When the question is raised, why use Emacs, one of the popular answers
+is the Magit package. Magit is described as a porcelain (not sure
+why!), but all I know is that it is a way of doing all the Git type
+actions that you might want to do within the text editor itself. The
+configuration below installs the Magit package and makes the key
+mapping to access the Magit functions 'C-x g'. Magit is a menu driven
+system for running through the normal cycle of Git functions, such as
+adding files to staging, committing updates and pushing to the
+repository. It also provides the more advanced functions such as
+rebasing, but these are ofter accessed using M-x and then magit-
+followed by the function you require.
+
+I have long marvelled at how seamless the Magit functionality is
+within Emacs, but I hadn't realised how good this was until, at work,
+I had reason to try the popular 'Visual Studio' editor from
+Microsoft. This editor, like most such systems nowadays, supports the
+use of version control, but it is well clunky when compared to the
+mighty Magit. Like most Windows stuff, it is mouse-centric, whereas
+key driven approaches are so much more graceful.
+
+#+begin_src emacs-lisp
+  ;; Enable Magit and configure the 'Git status' key mapping.
+  (use-package magit
+    :config (global-set-key (kbd "C-x g") 'magit-status))
+#+end_src
+
+** Helm - Command Filtering Everywhere.
+
+Emacs got its name from the fact that it is a large number of macros
+which enable you to do all sorts of clever things. The command to go
+to the beginning of a line is called with C-a, but the actual macro
+you are running is org-beginning-of-line (this specific macro because
+this file is being written in Org Mode). The most useful commands are,
+like the above, mapped to a keymapping, and there are many keymaps
+employed in a single Emacs setup. But there will still be many many
+commands which you don't use enough to merit assigning a keystroke
+to. Fortunately Emacs provides a straightforward way to run these
+macros. The key pair 'M-x' will open the transitory window at the
+bottom of the Emacs window and the command can be called by typing its
+name. To a certain extent, this approach does require you to remember
+the command you want to use, but Helm simplifies this by providing a
+filtering process. Rather than typing the full name, in the right
+order, and with the appropriate hyphens, type the words that you
+expect to be in the macros command name and the displayed list of
+macros will filter down until you are left with a handful of possible
+candidates, or in many cases, just the command that you want.
+
+When the filtering has reduced the number of options to a suitably
+small number then the required macros can be selected, moving the
+selection bar up or down using C-n (next) or C-p (previous) as
+appropriate.
+
+The Helm configuration below activates the Helm function and
+configures a few popular Helm specific activities:
+
+- Helm 'Find Files': M-<F5>
+- Helm 'Buffers List': <F10>
+- Helm 'Recent Files': S-<F10>
+
+It is worth considering highlighting these keys in a Conky template at
+some point, otherwise I will never use them! Checking just now, they
+do all work as expected!
+
+#+begin_src emacs-lisp
+  ;; Activate helm, the filtering function.
+  (use-package helm
+    :bind (("M-x" . helm-M-x)
+  	 ("M-<f5>" . helm-find-files)
+  	 ([f10] . helm-buffers-list)
+  	 ([S-f10] . helm-recentf))
+    :config
+    (helm-mode 1)
+    (helm-autoresize-mode))
+#+end_src
+
+Practice makes perfect when it comes to using Helm.
+
 ** Aesthetics Settings.
 
 *** Minimise the Screen Furniture in the Emacs Window.
