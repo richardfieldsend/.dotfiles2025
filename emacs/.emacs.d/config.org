@@ -323,6 +323,33 @@ in multiple locations.
 
 *** Select A Dark Colour Theme.
 
+I like to use a dark theme in Emacs (as I do in most of the programs
+that I use), and there are a huge number available in Emacs. My
+preference is for one with a relatively dark background, but with
+fairly colourful font colourisation for the text as this helps in
+reading the structure of things like code and markup.
+
+There is a useful gallery website which shows examples of the various
+themes available. This can be found here:
+
+https://emacsthemes.com/
+
+I'm going to go with 'Catppuccin' for the time being. There is a
+development repository for the theme here:
+
+https://github.com/catppuccin/emacs
+
+But it is also in the Melpa repositories, so can be installed using
+the same use-package commands.
+
+#+begin_src emacs-lisp
+        ;; Catppuccin Machiato theme
+        (use-package catppuccin-theme
+          :ensure t
+          :config (setq catppuccin-flavor 'macchiato)
+  	(catppuccin-reload))
+#+end_src
+
 *** Set A Nice Font.
 
 ** Behaviours That Are Useful In All The Modes.
