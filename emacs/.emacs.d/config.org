@@ -388,13 +388,30 @@ useful.
 This approach displays the buffer name and the file (including path)
 in the frame title bar.
 
+*** Highlighting the Current Line.
+
+Sometimes it can be difficult to locate the line that you are working
+on. This setting switches on highlighting for the line that the cursor
+is currently on, to make it easier to find where you are.
+
+This is one of the first settings that feels like it could be added
+either as a purelf aesthetic entry or as a 'behaviour that is useful
+in all modes'. Currently I'm going to treat it as an aesthetic
+setting, but it could live in the alternate location just as readily.
+
+#+begin_src emacs-lisp
+  ;; Turn on highlighiing of the current line.
+  (global-hl-line-mode 1)
+#+end_src
+
 ** Behaviours That Are Useful In All The Modes.
 
 *** Parenthesis Pairing - add the closing bracket automatically.
 
-*** Spell Checking - Check Spelling Against UK British Dictionary.
-
 *** Rainbow Colouring Of Brackets - Useful to check bracket pairing
+
+
+*** Spell Checking - Check Spelling Against UK British Dictionary.
 
 ** Writing Prose And Documents.
 
