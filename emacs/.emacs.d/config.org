@@ -421,6 +421,21 @@ If the icon on the Doom Modeline shows a Unicode character then the
 required font isn't installed. Google for instructions on installing
 the Doom Modeline fonts for instructions.
 
+*** Emacs Window Transparency Settings.
+
+Transparency in Emacs relies on a functioning Compositor. The i3wm
+doesn't use the same compositor as Gnome or KDE, so it needs to be
+installed and configured separately. Once it is running it can be
+configured to different levels of transparency.
+
+#+begin_src emacs-lisp
+  ;; Transparency - super groovy!
+  (set-frame-parameter (selected-frame) 'alpha '(80 50))
+  (add-to-list 'default-frame-alist '(alpha 80 50))
+#+end_src
+
+The 80/50 configure the transparency for the active and inactive modes.
+
 ** Behaviours That Are Useful In All The Modes.
 
 *** Parenthesis Pairing - add the closing bracket automatically.
