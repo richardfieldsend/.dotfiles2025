@@ -350,7 +350,24 @@ the same use-package commands.
   	(catppuccin-reload))
 #+end_src
 
+I do like the new theme, especially the colours of the markup language entries.
+
 *** Set A Nice Font.
+
+A popular subject on the Emacs Porn sub-reddit is the font that people
+like to use with Emacs. I've regularly settled on some version of
+Hack, so I'm going to stick with that.
+
+#+begin_src emacs-lisp
+  ;; Set the font to Hack, and experiment a little with the size.
+  (add-to-list 'default-frame-alist '(font . "Hack-7"))
+  (set-face-attribute 'default nil
+  		    :family "Hack")
+#+end_src
+
+Setting the font to size 7 might be a step too far, but I'll use it
+for a little while, see how I get on.
+
 
 ** Behaviours That Are Useful In All The Modes.
 
