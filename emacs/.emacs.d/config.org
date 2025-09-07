@@ -437,7 +437,6 @@ configured to different levels of transparency.
 The 80/50 configure the transparency for the active and inactive modes.
 
 ** Behaviours That Are Useful In All The Modes.
-
 *** Parenthesis Pairing - add the closing bracket automatically.
 
 Parenthesis pairing is provided by the use of 'electric
@@ -470,8 +469,6 @@ the future.
     :config (add-hook 'pov-mode-hook 'electric-pair-mode))
 #+end_src
 
-
-
 *** Rainbow Colouring Of Brackets - Useful to check bracket pairing
 
 Emacs provides an excellent method of managing brackets by using
@@ -492,7 +489,50 @@ brackets the same colour.
     :config (add-hook 'pov-mode-hook 'rainbow-delimiters-mode))
 #+end_src
 
+*** Bracket/Parenthesis Pair Highlighting Function.
+
+The rainbow colouring of brackets and adding brackets as pairs both
+provide excellent, reliable methods to ensure brackets are
+balanced. The following setting provides another method, highlighting
+the other half of each pair when the cursor is in place.
+
+#+begin_src emacs-lisp
+  ;; Highlight the other half of a matching pair when the cursor is
+  ;; on a bracket or similar.
+  (show-paren-mode 1)
+#+end_src
+
 *** Spell Checking - Check Spelling Against UK British Dictionary.
+
+#+begin_src emacs-lisp
+    ;; spellchecking
+    (setq ispell-program-name "/usr/bin/aspell")
+    (setq ispell-dictionary "british"
+          ispell-extra-args '() ;; TeX mode "-t"
+    	ispell-silently-savep t)
+
+    ;; Configure a personal dictionary
+    (setq ispell-personal-dictionary "~/.backups/ispell-personal-dictionary")
+    ;; flyspell
+    (use-package flyspell
+      :ensure t
+      :init
+      :config (add-hook 'text-mode-hook 'flyspell-mode)
+      :config (add-hook 'prog-mode-hook 'flyspell-mode)
+      :config (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+      :config (add-hook 'latex-mode-hook 'flyspell-mode)
+      :config (add-hook 'org-mode-hook 'flyspell-mode)
+      :config (define-key flyspell-mode-map (kbd "C-,") 'helm-flyspell-correct))
+#+end_src
+
+*** Grammar Checking - Flycheck For Other Types of Language Checking.
+
+#+begin_src emacs-lisp
+  ;; install and configure flycheck
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+#+end_src
 
 ** Writing Prose And Documents.
 
