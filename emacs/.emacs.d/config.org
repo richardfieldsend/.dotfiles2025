@@ -567,6 +567,7 @@ of the file by folding (hiding) the section of text. The global
 numbering counts these lines even though they aren't visible. This
 means that this file leaps from 73-107, from 107-178 etc. Entering a
 line number which is hidden will cause the section to be opened.
+
 *** Line Wrapping Everywhere and Every Mode.
 
 By default, Emacs doesn't have line-wrapping switched on by
@@ -585,6 +586,29 @@ default. The following is the configuration to activate the line wrap.
 
 Using 'prog-mode-hook' activates the wrapping for all manner of
 programming modes.
+
+*** Backup File Management.
+
+The default backup behaviour for Emacs is to create a copy of the file
+that is being backed up but with attached number tags ~<no.>~ stored
+in the same directory as the original. This can lead to a number of
+random files filling these folders up.
+
+The reconfigured version saves these backups into a shared folder, in
+my case ~/.backups/
+
+#+begin_src emacs-lisp
+  ;; set backup target directory and behaviour
+  (setq backup-directory-alist
+        '(("." . "~/.backups/")))
+  (setq backup-by-copying t
+        delete-old-versions t
+        kept-new-versions 2
+        kept-old-versions 2
+        version-control t)
+#+end_src
+
+
 
 ** Writing Prose And Documents.
 
