@@ -360,7 +360,7 @@ Hack, so I'm going to stick with that.
 
 #+begin_src emacs-lisp
   ;; Set the font to Hack, and experiment a little with the size.
-  (add-to-list 'default-frame-alist '(font . "Hack-10"))
+  (add-to-list 'default-frame-alist '(font . "Hack-11"))
   (set-face-attribute 'default nil
   		    :family "Hack")
 #+end_src
@@ -442,6 +442,23 @@ The 80/50 configure the transparency for the active and inactive modes.
 
 *** Rainbow Colouring Of Brackets - Useful to check bracket pairing
 
+Emacs provides an excellent method of managing brackets by using
+electric brackets (see 'Parenthesis Pairing'), but this function also
+helps you track the brackets by colouring the opening and closing
+brackets the same colour.
+
+#+begin_src emacs-lisp
+  ;; Rainbow Delimiters (this needs setting for relevant modes).
+  (use-package rainbow-delimiters
+    :ensure t
+    :init
+    :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'LaTeX-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'latex-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'text-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'org-mode-hook 'rainbow-delimiters-mode)
+    :config (add-hook 'pov-mode-hook 'rainbow-delimiters-mode))
+#+end_src
 
 *** Spell Checking - Check Spelling Against UK British Dictionary.
 
