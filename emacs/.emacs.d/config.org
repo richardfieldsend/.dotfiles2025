@@ -440,6 +440,38 @@ The 80/50 configure the transparency for the active and inactive modes.
 
 *** Parenthesis Pairing - add the closing bracket automatically.
 
+Parenthesis pairing is provided by the use of 'electric
+behaviour'. Once this is set up then adding the opening bracket will
+trigger adding the closing bracket and will place the cursor between
+the two brackets.
+
+The brackets in this case includes:
+
+parenthesis - ()
+square brackets - []
+curly brackets - {}
+speech marks - ""
+single quotes - ''
+
+When writing Lisp the pairing of single quotes can be a pain, but I
+don't do enough Lisp to make me want to fix this. This may change in
+the future.
+
+#+begin_src emacs-lisp
+  ;; Electric Brackets
+  (use-package electric
+    :ensure t
+    :init
+    :config (add-hook 'prog-mode-hook 'electric-pair-mode)
+    :config (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
+    :config (add-hook 'latex-mode-hook 'electric-pair-mode)
+    :config (add-hook 'text-mode-hook 'electric-pair-mode)
+    :config (add-hook 'org-mode-hook 'electric-pair-mode)
+    :config (add-hook 'pov-mode-hook 'electric-pair-mode))
+#+end_src
+
+
+
 *** Rainbow Colouring Of Brackets - Useful to check bracket pairing
 
 Emacs provides an excellent method of managing brackets by using
