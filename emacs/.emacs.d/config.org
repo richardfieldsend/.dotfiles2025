@@ -534,6 +534,39 @@ the other half of each pair when the cursor is in place.
     :init (global-flycheck-mode))
 #+end_src
 
+*** Global Line Numbering.
+
+Back when I first started playing around with computers, back when ZX
+Spectrums were cutting edge and BASIC was the programming language of
+choice, writing programs involved putting a number at the beginning of
+every line, usually incremented in 10s in order to leave space for
+extra lines if required.
+
+Most other languages don't require the numbering of lines, but it can
+still be useful to get an idea of how many lines your file has, and it
+can ever provide a way of navigating the file quickly. To support
+this, I'm now going to switch on the displaying of the line number at
+the left hand edge of the Emacs frame.
+
+#+begin_src emacs-lisp
+  ;; Activate line numbering
+  (global-display-line-numbers-mode t)
+#+end_src
+
+The number can be used to navigate around using:
+
+M-g g or M-g M-g and then type the line number to move to.
+
+Of course, moving to the beginning or end of the file you can use M-<
+and M->. Otherwise search for text as a quick way of getting around.
+
+One point of note is the line numbering when using folding. Folding is
+a great way of being able to focus on a specific part of the text. If
+working appropriately, using Tab can cycle the visibility of a section
+of the file by folding (hiding) the section of text. The global
+numbering counts these lines even though they aren't visible. This
+means that this file leaps from 73-107, from 107-178 etc. Entering a
+line number which is hidden will cause the section to be opened.
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
