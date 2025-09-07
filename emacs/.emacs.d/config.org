@@ -404,6 +404,23 @@ setting, but it could live in the alternate location just as readily.
   (global-hl-line-mode 1)
 #+end_src
 
+*** Replace Standard Modeline with Doom Emacs Version.
+
+The Modeline is the information line just above the bottom of the
+active Emacs window. The standard version is fine, informative, but
+the Doom Emacs version uses the Nerd Font to highlight the file type.
+
+#+begin_src emacs-lisp
+  ;; Activate the Doom Mode Line.
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
+#+end_src
+
+If the icon on the Doom Modeline shows a Unicode character then the
+required font isn't installed. Google for instructions on installing
+the Doom Modeline fonts for instructions.
+
 ** Behaviours That Are Useful In All The Modes.
 
 *** Parenthesis Pairing - add the closing bracket automatically.
