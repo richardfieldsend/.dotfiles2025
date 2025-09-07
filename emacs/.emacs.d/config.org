@@ -567,6 +567,25 @@ of the file by folding (hiding) the section of text. The global
 numbering counts these lines even though they aren't visible. This
 means that this file leaps from 73-107, from 107-178 etc. Entering a
 line number which is hidden will cause the section to be opened.
+*** Line Wrapping Everywhere and Every Mode.
+
+By default, Emacs doesn't have line-wrapping switched on by
+default. The following is the configuration to activate the line wrap.
+
+#+begin_src emacs-lisp
+  ;; Activate auto-fill mode as a minor mode for all the popular modes
+  (add-hook 'text-mode-hook 'turn-on-auto-fill)
+  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+  (add-hook 'latex-mode-hook 'turn-on-auto-fill)
+  (add-hook 'org-mode-hook 'turn-on-auto-fill)
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-auto-fill)
+  (add-hook 'fundamental-mode-hook 'turn-on-auto-fill)
+  (add-hook 'prog-mode-hook 'turn-on-auto-fill)
+#+end_src
+
+Using 'prog-mode-hook' activates the wrapping for all manner of
+programming modes.
+
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
