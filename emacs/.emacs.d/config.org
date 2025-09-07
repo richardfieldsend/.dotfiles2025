@@ -609,6 +609,18 @@ my case ~/.backups/
 #+end_src
 
 
+*** Return To The Previous Location In The File.
+
+When working on a project, it is likely you'll need to keep on
+returning to a small subset of files and, in many cases to the same
+locations. The following configures this and saves the information
+into a file in the backup folder.
+
+#+begin_src emacs-lisp
+  ;; SavePlace behaviour - back to your last location
+  (save-place-mode 1)
+  (setq save-place-file "~/.backups/.places")
+#+end_src
 
 ** Writing Prose And Documents.
 
