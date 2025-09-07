@@ -368,6 +368,25 @@ Hack, so I'm going to stick with that.
 Setting the font to size 7 might be a step too far, but I'll use it
 for a little while, see how I get on.
 
+*** Modify Frame Title to Useful Text.
+
+The standard text in the frame heading has the form:
+
+filename - GNU Emacs at ziggyi5
+
+While this does give you the bare information, it could be more
+useful.
+
+#+begin_src emacs-lisp
+  ;; Modify frame title from:
+  ;; filename - GNU Emacs at system name
+  ;; to
+  ;; Emacs - Buffer: > File
+  (setq frame-title-format '("Emacs - Buffer: %b > File: %f"))
+#+end_src
+
+This approach displays the buffer name and the file (including path)
+in the frame title bar.
 
 ** Behaviours That Are Useful In All The Modes.
 
