@@ -608,7 +608,6 @@ my case ~/.backups/
         version-control t)
 #+end_src
 
-
 *** Return To The Previous Location In The File.
 
 When working on a project, it is likely you'll need to keep on
@@ -620,6 +619,29 @@ into a file in the backup folder.
   ;; SavePlace behaviour - back to your last location
   (save-place-mode 1)
   (setq save-place-file "~/.backups/.places")
+#+end_src
+
+*** Emacs Command History Persistence.
+
+When working on the command line, one of the really useful functions
+is to be able to recall previous commands that have been entered in
+Bash. This can be done using either the command 'history' or using C-r
+to search backwards through the command list.
+
+A similar function for Emacs is provided by using a history file,
+configured below.
+
+#+begin_src emacs-lisp
+  ;; Persistent command history between Emacs sessions.
+  (setq savehist-file "~/.backups/emacs-history"
+        history-length t
+        history-delete-duplicates t
+        savehist-save-minibuffers-history 1
+        savehist-additional-variables
+        '(kill-ring
+  	search-ring
+  	regexp-search-ring))
+  (savehist-mode 1)
 #+end_src
 
 ** Writing Prose And Documents.
