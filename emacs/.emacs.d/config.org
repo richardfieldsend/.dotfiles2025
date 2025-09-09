@@ -621,7 +621,7 @@ into a file in the backup folder.
   (setq save-place-file "~/.backups/.places")
 #+end_src
 
-*** Emacs Command History Persistence.
+*** Emacs Command History Persistence Using savehist.
 
 When working on the command line, one of the really useful functions
 is to be able to recall previous commands that have been entered in
@@ -643,6 +643,36 @@ configured below.
   	regexp-search-ring))
   (savehist-mode 1)
 #+end_src
+
+*** White Space Trimming.
+
+It is often the case that, when working repeatedly on a single file
+then that file can end up having extra white space added or left over
+at the end of the file. This can happen because of text deleted
+during the editing phase, or just from random extra lines being added
+when the text is being written. The following function removes
+excessive text from the end of a document. It is also useful when the
+files are under version control because extra lines at the end of a
+document may trigger the document being considered a new version.
+
+This approach also removes extra characters at the end of the lines in
+the document. There is discussion on providing this functionality in
+the Emacs Wiki page on white space removal.
+
+#+begin_src emacs-lisp
+  ;; Remove blank lines from the end of the file.
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
+
+The function is one of the first in the file to be added to the list
+of functions activated when a particular event is taking place. In
+this case the 'delete-trailing-whitespace function is executed when
+the file is saved.
+
+A useful note for functions of this type is how you can find
+information on what they do. M-x describe function and then enter the
+function name, and you'll see a guide on what the function actually
+does, along with any modifications available in the command.
 
 ** Writing Prose And Documents.
 
