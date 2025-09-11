@@ -693,6 +693,22 @@ Configure the default mode in Emacs to be text mode.
   ;; Set the default major mode to text mode.
   (setq-default major-mode 'text-mode)
 #+end_src
+*** Dynamic Text Expansion.
+
+A simple way of expanding text that has been entered previously. This
+doesn't require any configuring, so this is just a note on using the
+text expansion.
+
+If you have written a word or phrase and you want to repeat it, then
+you can start the phrase and then use the key 'M-/'.
+
+For example, a piece of laboratory equipment is called a Weissenberg
+Rheogoniometer. This is a heck of a thing to have to type on the
+regular. So, instead, type Wei and then use the M-/ to expand it:
+
+Weissenberg Rheogoniometer
+
+Hitting M-/ twice will replay both words.
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
