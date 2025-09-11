@@ -674,6 +674,16 @@ information on what they do. M-x describe function and then enter the
 function name, and you'll see a guide on what the function actually
 does, along with any modifications available in the command.
 
+*** Simplified Response for Yes/No Questions.
+
+The default behaviour for Emacs when requiring yes/no answers is for
+the answer to be the full word in each case. The following function
+simplifies this to y/n.
+
+#+begin_src emacs-lisp
+  ;; Use y/n rather than yes/no
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
