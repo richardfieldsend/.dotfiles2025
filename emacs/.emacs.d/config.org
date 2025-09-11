@@ -709,6 +709,42 @@ regular. So, instead, type Wei and then use the M-/ to expand it:
 Weissenberg Rheogoniometer
 
 Hitting M-/ twice will replay both words.
+
+*** Automatic Text Expansion Of Configured Phrases.
+
+There was a time when I first started doing text processing where I
+wanted to discover a method of expanding text to save me typing.
+
+The expansions are saved to the file defined in this configuration.
+
+#+begin_src emacs-lisp
+  ;; Automatic expansion of configured abbreviations.
+  (setq-default abbrev-mode t)
+  (setq abbrev-file-name "~/.backups/.abbrev_defs")
+  (setq save-abbrevs 'silently)
+#+end_src
+
+bw -> Best wishes
+hth -> Hope that helps
+li -> Lizzie
+lif -> Lizzie Fieldsend
+mo -> Morag
+mof -> Morag Fieldsend
+mw -> MathWorks
+ri -> Richard
+rif -> Richard Fieldsend
+teh -> the
+wr -> Weissenberg Rheogoniometer
+
+Extra abbreviations can be added by typing the text that you want
+expanded and then type either of these commands:
+
+C-x a i g - Global abbreviations working in every mode
+
+C-x a i l - Local abbreviations working in the current mode
+
+The updates will be saved to the abbreviations file when Emacs is
+closed using C-x C-c.
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
