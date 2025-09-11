@@ -684,6 +684,15 @@ simplifies this to y/n.
   ;; Use y/n rather than yes/no
   (fset 'yes-or-no-p 'y-or-n-p)
 #+end_src
+
+*** Make the Default Emacs Mode 'Text' Mode.
+
+Configure the default mode in Emacs to be text mode.
+
+#+begin_src emacs-lisp
+  ;; Set the default major mode to text mode.
+  (setq-default major-mode 'text-mode)
+#+end_src
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
