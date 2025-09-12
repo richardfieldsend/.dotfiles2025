@@ -745,6 +745,31 @@ C-x a i l - Local abbreviations working in the current mode
 
 The updates will be saved to the abbreviations file when Emacs is
 closed using C-x C-c.
+*** Bookmarking in Emacs.
+
+Bookmarking is pretty much exactly what you would imagine it to be, a
+way of marking locations in any number of files. The bookmark storage
+file is located in the .backups file where many of the other storage
+files are kept.
+
+#+begin_src emacs-lisp
+  ;; Configure where the bookmarks will be stored.
+  (set 'bookmark-default-file "~/.backups/.bookmarks")
+#+end_src
+
+The process of using bookmarks includes the following activities:
+
+C-x r m - Mark the location where the cursor is using a bookmark. The
+bookmark can be titled to help identify the bookmark later.
+
+C-x r b - Jump to a bookmark
+
+C-x r l - List the available bookmarks.
+
+The bookmark list can be navigated and edited in the bookmarks
+list. Mark a bookmark for deletion by selecting a bookmark and hitting
+d. Deletion actually takes place when 'executed' by hitting x. This is
+similar behaviour to the Dired file management function.
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
