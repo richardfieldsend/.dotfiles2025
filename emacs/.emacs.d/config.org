@@ -889,6 +889,26 @@ https://www.emacswiki.org/emacs/BookMarks
 *** Manage the Bibliographic Databases Using eBib.
 
 *** Markdown and Org Mode Document Preparation.
+**** Org Mode Code Tangling - Code Indentation.
+
+One of the things that you can do in Org Mode is to embed sections of
+code in a number of different languages. This file contains a number
+of sections which use Emacs Lisp to configure my Emacs setup. I should
+experiment a whole lot more into using this as a method of
+experimenting with programming.
+
+In the meantime the following configures the indentation for code
+written in these code sections. This is most important in languages
+that rely on indentation such as Python, but it also makes reading
+code in other languages easier to read.
+
+#+begin_src emacs-lisp
+  ;; Indent programming code blocks appropriately.
+  (setq org-src-tab-acts-natively t)
+#+end_src
+
+I'm leaving this code in place, but checking the variable description
+shows that the value is already set to true.
 
 ** Programming Modes and Support.
 
