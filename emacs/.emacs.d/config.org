@@ -436,6 +436,71 @@ configured to different levels of transparency.
 
 The 80/50 configure the transparency for the active and inactive modes.
 
+** Emacs As A File Manager.
+
+*** Using Emacs Dired Mode For File Management.
+
+I wouldn't recommend using Emacs as a file manager. That isn't really
+what it is for, and while it can do some of the functions of a file
+manager (and it can do some things that most file managers can't do!)
+it does provide a bare bones set of behaviours that can help you work
+with multiple files while still staying in the Emacs environment and
+using the keys and functions provided by it.
+
+The primary method of working with files within Emacs is the Dired
+function. Type 'C-x C-f' and enter a path to a folder rather than to a
+specific file and you'll be shown the contents of the folder, and
+you'll be in the Dired mode.
+
+*** Deleting and Creating Files Using Dired.
+
+Out of the box, Dired provides the ability to delete files. Move the
+cursor to the line for the file you want to delete and hit d, repeat
+for each file that you want to delete, and when all the selections are
+made hit x for execute and the files will be deleted.
+
+Creating files is straightforward. Use C-x C-f for find-file. The
+filename is entered in the modeline.
+
+*** Text Search and Replace From The Dired Buffer.
+
+So far, so good, but more impressive are things like the ability to do
+text search and replace for the files from the Dired view. Information
+on how to do this is on this page:
+
+https://www.emacswiki.org/emacs/DiredSearchAndReplace
+
+At a bare minimum, a simple search and replace across any number of
+files is useful, but throw in the ability to select which files are
+procesed using grep or regular expressions and you have a powerhouse
+of rapid file modifications directly from what appears to be a simple
+file manager!
+
+*** Recent Files Function.
+
+There are times when you will need to keep going back to a small
+number of files. Like many other programs, Emacs supports this. Again,
+there is a file for storing the relevant information, and as with
+other files this is stored in the .backups folder.
+
+#+begin_src emacs-lisp
+  ;; Configure recent file functionality
+  (use-package recentf
+    :config
+    (setq recentf-save-file "~/.backups/.recentf")
+    recentf-max-saved-items 100
+    recentf-max-menu-items 100
+    (recentf-mode +1)
+    (global-set-key (kbd "C-x C-r") 'recentf-open-files))
+#+end_src
+
+When the list of recent files is displayed using C-x C-r, then the
+most recent entries are also tagged with the numbers 1-0, and the
+relevant file can be opened by hitting the appropriate number for
+those entries. Other entries can be selected by moving the cursor up
+or down to the required line, by searching using C-s (forward search)
+or C-r (backward search).
+
 ** Behaviours That Are Useful In All The Modes.
 *** Parenthesis Pairing - add the closing bracket automatically.
 
@@ -775,31 +840,6 @@ Further information on using the Bookmark function can be found on
 this wiki page:
 
 https://www.emacswiki.org/emacs/BookMarks
-
-*** Recent Files Function.
-
-There are times when you will need to keep going back to a small
-number of files. Like many other programs, Emacs supports this. Again,
-there is a file for storing the relevant information, and as with
-other files this is stored in the .backups folder.
-
-#+begin_src emacs-lisp
-  ;; Configure recent file functionality
-  (use-package recentf
-    :config
-    (setq recentf-save-file "~/.backups/.recentf")
-    recentf-max-saved-items 100
-    recentf-max-menu-items 100
-    (recentf-mode +1)
-    (global-set-key (kbd "C-x C-r") 'recentf-open-files))
-#+end_src
-
-When the list of recent files is displayed using C-x C-r, then the
-most recent entries are also tagged with the numbers 1-0, and the
-relevant file can be opened by hitting the appropriate number for
-those entries. Other entries can be selected by moving the cursor up
-or down to the required line, by searching using C-s (forward search)
-or C-r (backward search).
 
 ** Writing Prose And Documents.
 
