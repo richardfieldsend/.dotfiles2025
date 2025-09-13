@@ -886,6 +886,68 @@ https://www.emacswiki.org/emacs/BookMarks
 
 *** LaTeX Using AucTeX/BibTeX/RefTeX.
 
+
+When I first looked to install Linux in the late 1990s, the
+installation process was much more basic than the one we know
+today. There was a stage where a list of available packages was given,
+and you could select or deselect the ones you wanted. As a beginner I
+didn't know what was good, or practical. I did add Emacs (Vi was
+preselected), and my journey was underway. To help me learn my way
+around Emacs I bought the second edition of the Learning Emacs book by
+O'Reilly. Working through the customisations recommended there, I read
+about ways to write documents on Linux, given that there wasn't a good
+word processor. I read about LaTeX, and soon was buying an
+introductory book on using LaTeX.
+
+So began a long time love affair with the weird world of writing
+documents using an arcane markup language.
+
+Fortunately Emacs has tools that make this process much easier. For
+instance, the text expansion tools configured elsewhere.
+
+Here the AucTeX tool is set up to help write LaTeX documents with the
+minimum of fuss.
+
+#+begin_src emacs-lisp
+  ;; Install AucTeX for LaTeX editing.
+  (use-package auctex
+    :defer t
+    :ensure t)
+  ;; Add RefTeX for Reference and Link Management.
+  (require 'reftex)
+  (setq reftex-plug-into-AUCTeX t)
+  ;; Switch on auto-saving for LaTeX documents.
+  (setq TeX-auto-save t)
+  ;; Switch on electric mode for AucTeX.
+  (setq TeX-electric-escape t)
+  ;; Make AucTeX parse documents for included documents and the like.
+  (setq TeX-parse-self t)
+  ;; Set the master document to nothing by default.
+  (setq-default TeX-master nil)
+  ;; Turn on RefTeX for both native LaTeX and latex modes.
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'latex-mode-hook 'turn-on-reftex)
+  ;; Activate Flyspell Mode
+  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+  (add-hook 'latex-mode-hook 'flyspell-mode)
+  ;; Math Mode On
+  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+  (add-hook 'latex-math-mode 'LaTeX-math-mode)
+  ;; Activate Outline Minor Mode.
+  (add-hook 'LaTeX-mode-hook 'outline-minor-mode)
+  (add-hook 'latex-mode-hook 'outline-minor-mode)
+  ;; Folding enabled for macros and environments.
+  (add-hook 'latex-mode-hook (lambda ()
+  			     (TeX-fold-mode 1)))
+  (add-hook 'LaTeX-mode-hook (lambda ()
+  			     (TeX-fold-mode 1)))
+  ;; Set me as the default author to load when \author{} is used
+  (setq LaTeX-default-author '("Richard Fieldsend"))
+#+end_src
+
+This all worked as expected, but I will do a bit more testing and
+probably create some sort of cheat sheet about the available functions
+in my LaTeX configuration.
 *** Manage the Bibliographic Databases Using eBib.
 
 *** Markdown and Org Mode Document Preparation.
