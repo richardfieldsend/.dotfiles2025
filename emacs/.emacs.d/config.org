@@ -437,7 +437,6 @@ configured to different levels of transparency.
 The 80/50 configure the transparency for the active and inactive modes.
 
 ** Emacs As A File Manager.
-
 *** Using Emacs Dired Mode For File Management.
 
 I wouldn't recommend using Emacs as a file manager. That isn't really
@@ -472,7 +471,7 @@ https://www.emacswiki.org/emacs/DiredSearchAndReplace
 
 At a bare minimum, a simple search and replace across any number of
 files is useful, but throw in the ability to select which files are
-procesed using grep or regular expressions and you have a powerhouse
+processed using grep or regular expressions and you have a powerhouse
 of rapid file modifications directly from what appears to be a simple
 file manager!
 
@@ -501,6 +500,25 @@ those entries. Other entries can be selected by moving the cursor up
 or down to the required line, by searching using C-s (forward search)
 or C-r (backward search).
 
+*** Display Useful Git Related Information in Dired.
+
+When configuring the early stages of this file, one of the first
+settings to add was the section that added Magit, the Emacs
+implementation of git version control. When you start using git
+outside of Magit, especially on other platforms, you quickly realise
+just how good Magit is.
+
+Dired can show git related information within the Dired buffer.
+
+#+begin_src emacs-lisp
+  ;; Enable git information display in the Dired mode.
+  (use-package dired-git-info)
+  (with-eval-after-load 'dired
+    (define-key dired-mode-map ")" 'dired-git-info-mode))
+#+end_src
+
+When in a Dired buffer which is under git management, hit the ) key to
+show the git information.
 ** Behaviours That Are Useful In All The Modes.
 *** Parenthesis Pairing - add the closing bracket automatically.
 
