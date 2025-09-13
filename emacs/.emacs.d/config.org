@@ -770,6 +770,37 @@ The bookmark list can be navigated and edited in the bookmarks
 list. Mark a bookmark for deletion by selecting a bookmark and hitting
 d. Deletion actually takes place when 'executed' by hitting x. This is
 similar behaviour to the Dired file management function.
+
+Further information on using the Bookmark function can be found on
+this wiki page:
+
+https://www.emacswiki.org/emacs/BookMarks
+
+*** Recent Files Function.
+
+There are times when you will need to keep going back to a small
+number of files. Like many other programs, Emacs supports this. Again,
+there is a file for storing the relevant information, and as with
+other files this is stored in the .backups folder.
+
+#+begin_src emacs-lisp
+  ;; Configure recent file functionality
+  (use-package recentf
+    :config
+    (setq recentf-save-file "~/.backups/.recentf")
+    recentf-max-saved-items 100
+    recentf-max-menu-items 100
+    (recentf-mode +1)
+    (global-set-key (kbd "C-x C-r") 'recentf-open-files))
+#+end_src
+
+When the list of recent files is displayed using C-x C-r, then the
+most recent entries are also tagged with the numbers 1-0, and the
+relevant file can be opened by hitting the appropriate number for
+those entries. Other entries can be selected by moving the cursor up
+or down to the required line, by searching using C-s (forward search)
+or C-r (backward search).
+
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
