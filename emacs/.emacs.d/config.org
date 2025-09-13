@@ -436,6 +436,25 @@ configured to different levels of transparency.
 
 The 80/50 configure the transparency for the active and inactive modes.
 
+*** Fancy Bullets When Using Org Mode.
+
+This file is one example of an Org Mode file. Org Mode is a
+specialised markup language created for use within Emacs. It can be
+used as a quick way to write files which can then be processed into
+LaTeX or HTML files. Like other markup languages, Org Mode uses simple
+tags that can then be processed into an appropriate structure. It uses
+asterisks at the beginning of lines for heading levels, so a single *
+would become the equivalent of a LaTeX \\section or HTML h1. Extra
+asterisks give h2, h3 etc.
+
+When writing the file in Org Mode, the asterisks can be replaced by
+prettier icons using Org Bullets as below.
+
+#+begin_src emacs-lisp
+  ;; Pretty Bullets for Org Mode Markdown.
+  (use-package org-bullets
+    :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
 ** Emacs As A File Manager.
 *** Using Emacs Dired Mode For File Management.
 
