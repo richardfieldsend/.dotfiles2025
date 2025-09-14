@@ -886,7 +886,6 @@ https://www.emacswiki.org/emacs/BookMarks
 
 *** LaTeX Using AucTeX/BibTeX/RefTeX.
 
-
 When I first looked to install Linux in the late 1990s, the
 installation process was much more basic than the one we know
 today. There was a stage where a list of available packages was given,
@@ -950,6 +949,32 @@ probably create some sort of cheat sheet about the available functions
 in my LaTeX configuration.
 *** Manage the Bibliographic Databases Using eBib.
 
+Having enabled LaTeX editing using AucTeX, the next step is to support
+using the built-in reference management functionality 'BibTeX'. In
+reality, I don't really have much need for this as I'm not writing
+academic papers or the like, but it is a good way of managing the
+books that I have and my 'to be read' list.
+
+#+begin_src emacs-lisp
+  ;; Activate and configure eBib for BibTeX database management.
+  (use-package ebib
+    :ensure ebib
+    :config (global-set-key (kbd "C-c b") 'ebib)
+    :config (setq ebib-bibtex-dialect 'biblatex)
+    :config (setq ebib-file-bib-search-dirs '("~/bibliographies/"))
+    :config (setq ebib-notes-directory '"~/bibliography-notes")
+    :config (setq ebib-default-entry-type "Book")
+    :config (setq ebib-preload-bib-files
+  		'("~/bibliographies/humble.bib" "~/bibliographies/kindle.bib" "~/bibliographies/paperbacks.bib" "~/bibliographies/hardbacks.bib" "~/bibliographies/audiobooks.bib"))
+    :config (setq ebib-keywords-field-keep-sorted t)
+    :config (setq ebib-keywords "~/bibliographies/keywordslist.txt")
+    :config (setq ebib-keywords-save-on-exit 'always)
+    :config (setq ebib-reading-list-file "~/bibliographies/ToBeRead.org")
+    :config (setq ebib-use-timestamp t)
+    :config (setq ebib-autogenerate-keys t))
+#+end_src
+
+I will add some notes on using the eBib mode in the future.
 *** Markdown and Org Mode Document Preparation.
 **** Org Mode Code Tangling - Code Indentation.
 
