@@ -914,6 +914,40 @@ file.
 
 Deactivating the mode by using M-x writeroom-mode again returns the
 screen to its previous layout.
+
+**** Low Distraction Mode 2 - Olivetti Mode.
+
+#+begin_src emacs-lisp
+  ;; Olivetti Mode.
+  (use-package olivetti)
+  (require 'olivetti)
+#+end_src
+
+Olivetti Mode is similar to the Writeroom Mode, as you would expect,
+given that it is intended to provide similar functionality. The
+differences are that it doesn't make the Emacs window full screen, and
+leaves the titlebar and taskbar at the top and bottom of the screen
+respectively both visible. On my i3wm setup, moving the Emacs window
+to its own desktop gives a similar setup to Writeroom, though the
+borders are such that the central text is narrower, giving an odd word
+wrapping.
+
+The text column can be broadened using C-c}, or narrowed using
+C-c{. The text width can be set using C-c\ and enter he text with as a
+number.
+
+**** Low Distraction Mode 3 - Dark Room Mode.
+
+#+begin_src emacs-lisp
+  ;; Dark room mode
+  (use-package darkroom)
+#+end_src
+
+Darkroom mode is similar to Olivetti Mode in that it keeps the
+titlebar and taskbar in place, but the text size is increased
+somewhat. Nice and restful on the eyes, but not as minimal as
+Writeroom.
+
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
