@@ -878,7 +878,44 @@ this wiki page:
 
 https://www.emacswiki.org/emacs/BookMarks
 
+*** Low Distraction Environments for Writing.
+
+While I continue to harbour fantasies of writing, I sometimes look at
+tools that are available, and that exist primarily to make such a
+dream more feasible.
+
+This section covers the availability and type of tools. Within Emacs
+these tools are three different text editing modes which minimise the
+distractions that appear on the screen. The theory being that writing
+should be about concentrating on the text that you are working on, and
+not the wider ecosystem that this exists in. The use of Emacs as a
+text editor rather than using a word processor is somewhat an example
+of how this works. Concentrate on the words themselves, not on how
+they will eventually look.
+
+After the discussion of the modes available and a summary of their
+display approach, there is a commentary on the non-laptop based
+approaches to this issue.
+
+**** Low Distraction Mode 1 - Write Room Mode.
+
+#+begin_src emacs-lisp
+  ;; Write Room Mode.
+  (use-package writeroom-mode)
+#+end_src
+
+Once the above configuration is in place, then Write Room Mode is
+activated using M-x writeroom-mode. This activates the mode, which
+then expands the Emacs screen to full screen mode without any border
+or menu visible. The text is centred on the screen by adding two broad
+borders on the left and right hand side. The actual text itself is of
+the standard font and size configured elsewhere in the configuration
+file.
+
+Deactivating the mode by using M-x writeroom-mode again returns the
+screen to its previous layout.
 ** Writing Prose And Documents.
+
 *** Groff/Troff Editing
 
 To be added. I don't do much in the way of Groff editing anyway, but
@@ -1026,9 +1063,7 @@ shows that the value is already set to true.
 ** Programming Modes and Support.
 
 *** Makefile.
-
 *** Lisp/Clojure.
-
 *** Python.
 
 *** C/C++.
