@@ -879,11 +879,37 @@ this wiki page:
 https://www.emacswiki.org/emacs/BookMarks
 
 ** Writing Prose And Documents.
-
 *** Groff/Troff Editing
+
+To be added. I don't do much in the way of Groff editing anyway, but
+the entry is there in preparation for stuff to be added.
 
 *** HTML/CSS Editing Using Emmet
 
+Nowadays the process of writing HTML is expected to result in a fully
+balanced document tree. It is, of course, possible to write the whole
+thing 'by hand', but there are usually tools for making it much
+quicker and easier and to help guarantee the tags are properly
+constructed.
+
+The plugin Emmet is available on many platforms (I have it installed
+in Visual Studio at work). This is the configuration for the Emacs
+version.
+
+#+begin_src emacs-lisp
+  ;; Switch on emmet-mode
+  (use-package emmet-mode)
+  (require 'emmet-mode)
+  (add-hook 'html-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook 'emmet-mode)
+#+end_src
+
+Using emmet mode involves typing a tag pattern and then type C-j to
+expand the tags.
+
+A cheatsheet shows how this works:
+
+https://docs.emmet.io/cheat-sheet
 *** LaTeX Using AucTeX/BibTeX/RefTeX.
 
 When I first looked to install Linux in the late 1990s, the
@@ -1010,7 +1036,6 @@ shows that the value is already set to true.
 *** Rust.
 
 *** Debugging.
-
 * Footnotes
 
 [fn:1] In Emacs, the term 'electric' behaviour refers to extra
