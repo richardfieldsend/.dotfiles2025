@@ -1017,6 +1017,31 @@ Freewriter and the Alphasmart in that it has the wifi functionality
 but the LCD screen. This should arrive some time before the end of the
 year. I'll know how it deals with my Dvorak query when I receive it.
 
+*** Focus Mode - Another Aspect of Low Distraction Editing.
+
+An interesting take on the low distraction function is to dim text
+that isn't being worked on.
+
+#+begin_src emacs-lisp
+  ;; Focus Mode
+  (use-package focus
+    :config (add-to-list 'focus-mode-to-thing '(text-mode . sentence))
+    :config (add-to-list 'focus-mode-to-thing '(latex-mode . sentence))
+    :config (add-to-list 'focus-mode-to-thing '(LaTeX-mode . sentence))
+    :config (add-to-list 'focus-mode-to-thing '(org-mode . org-element))
+    :config (add-to-list 'focus-mode-to-thing '(prog-mode . line))
+    (add-hook 'text-mode-hook 'focus-mode)
+    (add-hook 'latex-mode-hook 'focus-mode)
+    (add-hook 'LaTeX-mode-hook 'focus-mode)
+    (add-hook 'org-mode-hook 'focus-mode)
+    (add-hook 'prog-mode-hook 'focus-mode)
+    )
+#+end_src
+
+In Emacs, 'out of the box' the definition of a sentence requires two
+spaces after the full stop. If only one space is used then it doesn't
+work. I believe it is possible to use 'French Mode', but I will aim to
+get back into the habit of using two spaces after the full stop.
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
