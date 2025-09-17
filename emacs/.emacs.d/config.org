@@ -948,6 +948,75 @@ titlebar and taskbar in place, but the text size is increased
 somewhat. Nice and restful on the eyes, but not as minimal as
 Writeroom.
 
+My initial impression is that the 'Write Room' is the best option of
+these three options. At some point I may strip out Olivetti and Dark
+Room if I don't find myself using them.
+
+*** Low Distraction Writing Outside of Emacs.
+
+The above is all about getting a low distraction writing environment
+set up within Emacs. There is a strong argument that while this is a
+good approach, as far as it goes, the reality is that the Emacs in
+question is still running on a laptop with an internet connection (and
+therefore the distractions that that provides), as well as games, both
+casual and more intense.
+
+On this basis, some time ago I began to become interested in the
+existence of low distraction hardware. The first device I noticed was
+the Pine64 laptop. This is a lightweight Arm based, minimal Linux
+device, intended to run little more than a text terminal. It would be
+fine for running an editor to write with no other options.
+
+Then I saw adverts for the Freewrite Traveller device. This is a full
+size mechanical keyboard with a clamshell lid which contains an e-ink
+screen to display the text as you write it. The device has wifi
+connectivity and the ability to write out your text to either Dropbox
+or GoogleDrive. Unfortunately it also had what felt like a very hefty
+price tag.
+
+Searching for an alternative device, I discovered the Alphasmart
+Neo2. This is a simple keyboard with an LCD screen to display the text
+as you write it. It is a much simpler device which was originally
+aimed as school classrooms which explains its robustness and the fact
+that it was provided with some language learning tools. The biggest
+advantage of these devices is that, thanks to their robustness, there
+are still a lot around, and they can be picked up on eBay for a
+reasonable sum. It is important to highlight that they are very
+simplistic compared to the Freewrite, having to built-in wifi
+function, and being designed mainly to transfer files to a 'proper'
+computer by being connected to the computer using an USB cable at
+which point the Alphasmart Neo2 becomes an external keyboard, typing
+the text again into a suitably provided document on the computer. This
+approach is fraught with many problems because of the temptation to
+forget that the typing process is taking place, and move to a
+different window, which will continue to receive the output that
+should have been placed in the relevant text file. The other issue
+that I had with my Neo2 is far more arcane and related to the fact
+that I'm a Dvorak keyboard layout user. Neo2 can be switched to use a
+Dvorak layout, which is extremely useful for me as I can touchtype
+using Dvorak, but not Qwerty. The Dvorak in question isn't perfect for
+my use as I usually use the UK Punctuation variation of Dvorak
+provided on Linux (includes the £ sign), with a swapped Caps Lock and
+left hand Ctrl key pair, but it is close enough. However, when using
+the text transference method where the typing is repeated, the Dvorak
+layout had another weird effect. The way that the external typing
+worked was to send the key position for the character that it wanted
+to send, not the character. So the a and m keys are the same on both
+layouts, but everything else is different. I initially started working
+around this by using the Linux 'tr' command which can be used to
+process text using a 1-2-1 character mapping. However, I then
+discovered that there is an open source project that provides a tool
+for hoovering the text files from the Neo2 as text, and therefore the
+Dvorak doesn't end up being an issue. This is done using a Python3
+script 'neotools'. May add more details on this when I next use it.
+
+Finally, I have backed a project on Kickstarter for a device called
+Byok which is a small device that you connect your own keyboard to (it
+stands for 'Bring Your Own Keyboard). This is a mix between the
+Freewriter and the Alphasmart in that it has the wifi functionality
+but the LCD screen. This should arrive some time before the end of the
+year. I'll know how it deals with my Dvorak query when I receive it.
+
 ** Writing Prose And Documents.
 
 *** Groff/Troff Editing
