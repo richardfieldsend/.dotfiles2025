@@ -1188,9 +1188,26 @@ code in other languages easier to read.
 I'm leaving this code in place, but checking the variable description
 shows that the value is already set to true.
 
+**** Remember - The Emacs Remember Mode.
+
+Remember mode is a way of gathering information and notes using Org
+Mode. The notes will be saved in the folder ~/remember.
+
+#+begin_src emacs-lisp
+  ;; Configure the remember mode and related keystrokes.
+  (require 'remember)
+  (setq remember-data-directory "~/remember/")
+  (setq remember-data-file "~/remember/notes.org")
+  (define-key global-map (kbd "<f9> r") 'remember)
+  (define-key global-map (kbd "<f9> R") 'remember-region)
+#+end_src
+
+
 ** Programming Modes and Support.
 
 *** Makefile.
+
+
 *** Lisp/Clojure.
 *** Python.
 
