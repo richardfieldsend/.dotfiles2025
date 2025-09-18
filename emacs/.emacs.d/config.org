@@ -1043,7 +1043,6 @@ spaces after the full stop. If only one space is used then it doesn't
 work. I believe it is possible to use 'French Mode', but I will aim to
 get back into the habit of using two spaces after the full stop.
 ** Writing Prose And Documents.
-
 *** Groff/Troff Editing
 
 To be added. I don't do much in the way of Groff editing anyway, but
@@ -1202,13 +1201,15 @@ Mode. The notes will be saved in the folder ~/remember.
   (define-key global-map (kbd "<f9> R") 'remember-region)
 #+end_src
 
-
 ** Programming Modes and Support.
-
 *** Makefile.
 
-
+There is a makefile-mode built-in in Emacs, so there is no necessity
+for adding an extra setting at this time. However, this is where that
+stuff would go if or when required.
 *** Lisp/Clojure.
+
+
 *** Python.
 
 *** C/C++.
