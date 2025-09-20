@@ -1253,8 +1253,29 @@ is updated. A google indicates that adding -B switch causes a full
 rebuild.
 *** Lisp/Clojure.
 
-
 *** Python.
+
+Python is a language that relies on layout more than many others, so
+it is useful to have linting for the language.
+
+#+begin_src emacs-lisp
+    ;; Use Elpy mode to manage Python coding.
+    (use-package elpy)
+    (elpy-enable)
+    (setq python-shell-interpreter "ipython3"
+  	python-shell-interpreter-args "-i --simple-prompt")
+    ;; Use flycheck to check the syntax as the code is written.
+    (use-package flycheck)
+    (when (require 'flycheck nil t)
+      (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+      (add-hook 'elpy-mode-hook 'flycheck-mode))
+    ;; Enable code formatting using PEP8
+    (use-package py-autopep8)
+    (require 'py-autopep8)
+    (add-hook 'elpy-mode-hook 'py-autopep8-mode)
+#+end_src
+
+
 *** C/C++.
 
 There are huge numbers of pages on the web regarding how to configure
@@ -1281,7 +1302,8 @@ just that.
   	      (setq flycheck-gcc-language-standard "c++11")))
 #+end_src
 
-Time to do some testing.
+See the Makefile section for help with using Makefile to manage
+compilation processes.
 *** Rust.
 
 *** Debugging.
