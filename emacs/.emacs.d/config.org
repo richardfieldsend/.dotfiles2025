@@ -1292,6 +1292,44 @@ is updated. A google indicates that adding -B switch causes a full
 rebuild.
 *** Lisp/Clojure.
 
+I need to add some configuration for Lisp editing other than Clojure,
+but for now, I am adding some functionality as provided by the Clojure
+configuration guide. I'm not using the whole thing because I have this
+carefully crafted configuration in place, but will appropriate
+sections. So far this has included setting up the use of
+hippie-expand. I'm still not convinced by the hippie-expand
+functionality in comparison to dabbrev, but for now it stays.
+
+**** Switch on Paredit Mode Support When Working with Lisps.
+
+One of the things that people know about Lisp is that it is very
+heavily dependent on the use of parentheses. To help working with the
+bracket laden code, Paredit Mode allows you to slurp or barf items
+into and out of a set of brackets. Details are available in the
+Clojure for the Brave and the True book.
+
+#+begin_src emacs-lisp
+  ;; Load Paredit for Lisp files
+  (use-package paredit)
+  (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+  (add-hook 'emacs-lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+  (add-hook 'ielm-mode-hook #'enable-paredit-mode)
+  (add-hook 'lisp-mode-hook #'enable-paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+#+end_src
+
+When you are coding, it is undoubtedly useful to have relevant
+information displayed in the minibuffer.
+
+#+begin_src emacs-lisp
+  ;; ElDoc information in minibuffer
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
+  (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
+#+end_src
+
 Clojure support. This is an incomplete set of functions as outlined in
 'Clojure for the Brave and the True.'.
 
