@@ -539,6 +539,22 @@ Dired can show git related information within the Dired buffer.
 When in a Dired buffer which is under git management, hit the ) key to
 show the git information.
 ** Behaviours That Are Useful In All The Modes.
+*** Default Search Mode Using Regular Expressions.
+
+One of the arcane areas of Emacs is the use of regular expressions for
+things like searching or find and replace. By default the standard
+search is accessed using C-s, and regular expression search is C-M-s
+(using r instead of s reverses the order of the search). Given how
+powerful regular expression searching is, it is worth using it as the
+default.
+
+#+begin_src emacs-lisp
+  ;; use regular expression searching by default.
+  (global-set-key (kbd "C-s") 'isearch-forward-regexp)
+  (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+  (global-set-key (kbd "C-M-s") 'isearch-forward)
+  (global-set-key (kbd "C-M-r") 'isearch-backward)
+#+end_src
 *** Parenthesis Pairing - add the closing bracket automatically.
 
 Parenthesis pairing is provided by the use of 'electric
