@@ -1211,9 +1211,33 @@ stuff would go if or when required.
 
 
 *** Python.
-
 *** C/C++.
 
+There are huge numbers of pages on the web regarding how to configure
+Emacs as an editor targeted at writing C/C++ code. Some aim to create
+something akin to a full blown IDE, but having used Visual Studio at
+work, I think I quite like a text editor with some smart formatting
+functionality and a quick method for running the compiler. This does
+just that.
+
+#+begin_src emacs-lisp
+  ;; C/C++ Coding and Compiling.
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (add-hook 'c-mode-hook
+  	  #'(lambda ()
+  	      (c-set-style "gnu")
+  	      (c-toggle-auto-newline 1)
+  	      (c-toggle-electric-state 1)))
+  ;; C++ Specific functions
+  (add-hook 'c++-mode-hook
+  	  #'(lambda ()
+  	      (c-set-style "Stroustrup")
+  	      (c-toggle-auto-newline 1)
+  	      (c-toggle-electric-state 1)
+  	      (setq flycheck-gcc-language-standard "c++11")))
+#+end_src
+
+Time to do some testing.
 *** Rust.
 
 *** Debugging.
