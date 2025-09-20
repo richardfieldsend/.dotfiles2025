@@ -812,6 +812,29 @@ Weissenberg Rheogoniometer
 
 Hitting M-/ twice will replay both words.
 
+**** Testing Using Hippie Expand Alternative for Dynamic Expansion.
+
+As I have been building this configuration I have seen a couple of
+pages that have very strongly 'bigged up' the use of hippie
+expand. Previous testing seemed to indicate that it didn't work, but
+that may be because it wasn't appropriately configured, so I'm trying
+again.
+
+Importantly, the dynamic expansion shortcut stay the same, so you
+still use M-/ so there is no need to move to a different keystroke.
+
+#+begin_src emacs-lisp
+  ;; Hippie Expand Configuration.
+  (global-set-key (kbd "M-/") 'hippie-expand)
+  ;; Set the expansions sources to try.
+  (setq hippie-expand-try-functions-list
+        '(try-expand-dabbrev
+  	try-expand-dabbrev-all-buffers
+  	try-expand-dabbrev-from-kill
+  	try-complete-lisp-symbol-partially
+  	try-complete-lisp-symbol))
+#+end_src
+
 *** Automatic Text Expansion Of Configured Phrases.
 
 There was a time when I first started doing text processing where I
@@ -1253,6 +1276,13 @@ is updated. A google indicates that adding -B switch causes a full
 rebuild.
 *** Lisp/Clojure.
 
+Clojure support. This is an incomplete set of functions as outlined in
+'Clojure for the Brave and the True.'.
+
+#+begin_src emacs-lisp
+  ;; Clojure support
+  (use-package cider)
+#+end_src
 *** Python.
 
 Python is a language that relies on layout more than many others, so
@@ -1274,7 +1304,6 @@ it is useful to have linting for the language.
     (require 'py-autopep8)
     (add-hook 'elpy-mode-hook 'py-autopep8-mode)
 #+end_src
-
 
 *** C/C++.
 
