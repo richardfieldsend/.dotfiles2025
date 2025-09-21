@@ -455,6 +455,20 @@ prettier icons using Org Bullets as below.
   (use-package org-bullets
     :config (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+end_src
+*** Fire - I'll Teach You To Burn.
+
+A useless but fun add-in. Start the fire using M-x fireplace. The
+fireplace can be controlled using:
+
+C-+ Move fire up
+C-- Move fire down
+C-* Toggle smoke
+q   Fire off
+
+#+begin_src emacs-lisp
+  ;; Fireplace Fun
+  (use-package fireplace)
+#+end_src
 ** Emacs As A File Manager.
 *** Using Emacs Dired Mode For File Management.
 
@@ -1073,7 +1087,7 @@ that isn't being worked on.
     (add-hook 'latex-mode-hook 'focus-mode)
     (add-hook 'LaTeX-mode-hook 'focus-mode)
     (add-hook 'org-mode-hook 'focus-mode)
-    (add-hook 'prog-mode-hook 'focus-mode)
+    ;; (add-hook 'prog-mode-hook 'focus-mode)
     )
 #+end_src
 
@@ -1335,7 +1349,10 @@ Clojure support. This is an incomplete set of functions as outlined in
 
 #+begin_src emacs-lisp
   ;; Clojure support
+  (use-package clojure-mode)
+  (use-package clojure-mode-extra-font-locking)
   (use-package cider)
+  (use-package clj-refactor)
 #+end_src
 *** Python.
 
