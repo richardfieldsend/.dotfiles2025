@@ -343,11 +343,11 @@ However, it is also in the Melpa repositories, so can be installed using
 the same use-package commands.
 
 #+begin_src emacs-lisp
-        ;; Catppuccin Machiato theme
-        (use-package catppuccin-theme
-          :ensure t
-          :config (setq catppuccin-flavor 'macchiato)
-  	(catppuccin-reload))
+  ;; Catppuccin Machiato theme
+  (use-package catppuccin-theme
+    :ensure t
+    :config (setq catppuccin-flavor 'macchiato)
+    (catppuccin-reload))
 #+end_src
 
 I do like the new theme, especially the colours of the markup language entries.
@@ -379,9 +379,6 @@ useful.
 
 #+begin_src emacs-lisp
   ;; Modify frame title from:
-  ;; filename - GNU Emacs at system name
-  ;; to
-  ;; Emacs - Buffer: > File
   (setq frame-title-format '("Emacs - Buffer: %b > File: %f"))
 #+end_src
 
@@ -469,6 +466,13 @@ q   Fire off
   ;; Fireplace Fun
   (use-package fireplace)
 #+end_src
+*** Make Emacs Sound Like A Proper Typewriter.
+
+#+begin_src emacs-lisp
+  ;; Selectrics Mode
+  (use-package selectric-mode)
+  (require 'selectric-mode)
+#+end_src
 ** Emacs As A File Manager.
 *** Using Emacs Dired Mode For File Management.
 
@@ -550,9 +554,10 @@ Dired can show git related information within the Dired buffer.
     (define-key dired-mode-map ")" 'dired-git-info-mode))
 #+end_src
 
-When in a Dired buffer which is under git management, hit the ) key to
-show the git information.
+When in a Dired buffer which is under git management, hit the 'close
+parenthesis' key to show the git information.
 ** Behaviours That Are Useful In All The Modes.
+
 *** Default Search Mode Using Regular Expressions.
 
 One of the arcane areas of Emacs is the use of regular expressions for
@@ -842,29 +847,6 @@ Weissenberg Rheogoniometer
 
 Hitting M-/ twice will replay both words.
 
-**** Testing Using Hippie Expand Alternative for Dynamic Expansion.
-
-As I have been building this configuration I have seen a couple of
-pages that have very strongly 'bigged up' the use of hippie
-expand. Previous testing seemed to indicate that it didn't work, but
-that may be because it wasn't appropriately configured, so I'm trying
-again.
-
-Importantly, the dynamic expansion shortcut stay the same, so you
-still use M-/ so there is no need to move to a different keystroke.
-
-#+begin_src emacs-lisp
-  ;; Hippie Expand Configuration.
-  (global-set-key (kbd "M-/") 'hippie-expand)
-  ;; Set the expansions sources to try.
-  (setq hippie-expand-try-functions-list
-        '(try-expand-dabbrev
-  	try-expand-dabbrev-all-buffers
-  	try-expand-dabbrev-from-kill
-  	try-complete-lisp-symbol-partially
-  	try-complete-lisp-symbol))
-#+end_src
-
 *** Automatic Text Expansion Of Configured Phrases.
 
 There was a time when I first started doing text processing where I
@@ -1086,9 +1068,7 @@ that isn't being worked on.
     (add-hook 'text-mode-hook 'focus-mode)
     (add-hook 'latex-mode-hook 'focus-mode)
     (add-hook 'LaTeX-mode-hook 'focus-mode)
-    (add-hook 'org-mode-hook 'focus-mode)
-    ;; (add-hook 'prog-mode-hook 'focus-mode)
-    )
+    (add-hook 'org-mode-hook 'focus-mode))
 #+end_src
 
 In Emacs, 'out of the box' the definition of a sentence requires two
@@ -1316,11 +1296,11 @@ functionality in comparison to dabbrev, but for now it stays.
 
 **** Switch on Paredit Mode Support When Working with Lisps.
 
-One of the things that people know about Lisp is that it is very
-heavily dependent on the use of parentheses. To help working with the
-bracket laden code, Paredit Mode allows you to slurp or barf items
-into and out of a set of brackets. Details are available in the
-Clojure for the Brave and the True book.
+One of the things that people know about Lisp is that it is heavily
+dependent on the use of parentheses. To help working with the bracket
+laden code, Paredit Mode allows you to slurp or barf items into and
+out of a set of brackets. Details are available in the Clojure for the
+Brave and the True book.
 
 #+begin_src emacs-lisp
   ;; Load Paredit for Lisp files
@@ -1353,6 +1333,7 @@ Clojure support. This is an incomplete set of functions as outlined in
   (use-package clojure-mode-extra-font-locking)
   (use-package cider)
   (use-package clj-refactor)
+
 #+end_src
 *** Python.
 
@@ -1360,20 +1341,20 @@ Python is a language that relies on layout more than many others, so
 it is useful to have linting for the language.
 
 #+begin_src emacs-lisp
-    ;; Use Elpy mode to manage Python coding.
-    (use-package elpy)
-    (elpy-enable)
-    (setq python-shell-interpreter "ipython3"
-  	python-shell-interpreter-args "-i --simple-prompt")
-    ;; Use flycheck to check the syntax as the code is written.
-    (use-package flycheck)
-    (when (require 'flycheck nil t)
-      (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-      (add-hook 'elpy-mode-hook 'flycheck-mode))
-    ;; Enable code formatting using PEP8
-    (use-package py-autopep8)
-    (require 'py-autopep8)
-    (add-hook 'elpy-mode-hook 'py-autopep8-mode)
+  ;; Use Elpy mode to manage Python coding.
+  (use-package elpy)
+  (elpy-enable)
+  (setq python-shell-interpreter "ipython3"
+        python-shell-interpreter-args "-i --simple-prompt")
+  ;; Use flycheck to check the syntax as the code is written.
+  (use-package flycheck)
+  (when (require 'flycheck nil t)
+    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-hook 'elpy-mode-hook 'flycheck-mode))
+  ;; Enable code formatting using PEP8
+  (use-package py-autopep8)
+  (require 'py-autopep8)
+  (add-hook 'elpy-mode-hook 'py-autopep8-mode)
 #+end_src
 
 *** C/C++.
